@@ -1481,6 +1481,19 @@ html {
     position: relative;
 }
 
+.dropdown-toggle::after {
+    content: '\f078';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.dropdown.active .dropdown-toggle::after {
+    transform: rotate(180deg);
+}
+
 .dropdown-toggle:hover,
 .dropdown-toggle.active {
     color: var(--accent-primary);
