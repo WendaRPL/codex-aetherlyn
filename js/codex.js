@@ -379,3 +379,51 @@ document.querySelectorAll('.timeline-year').forEach(year => {
         this.style.transform = 'translateX(-50%) scale(1)';
     });
 });
+
+// Tambahkan fungsi ini di codex.js
+function initializeTimelineResponsive() {
+    const timelineEvents = document.querySelectorAll('.timeline-event');
+    
+    function adjustTimelineForMobile() {
+        if (window.innerWidth <= 768) {
+            timelineEvents.forEach(event => {
+                // Ensure mobile layout
+                event.style.marginLeft = '50px';
+                event.style.width = 'calc(100% - 50px)';
+                event.style.borderRight = 'none';
+                event.style.borderLeft = '4px solid';
+                event.style.textAlign = 'left';
+            });
+        } else {
+            // Reset to desktop layout
+            timelineEvents.forEach((event, index) => {
+                if (index % 2 === 0) {
+                    event.style.marginLeft = '0';
+                    event.style.marginRight = 'auto';
+                    event.style.textAlign = 'left';
+                    event.style.borderRight = 'none';
+                    event.style.borderLeft = '4px solid';
+                } else {
+                    event.style.marginLeft = 'auto';
+                    event.style.marginRight = '0';
+                    event.style.textAlign = 'right';
+                    event.style.borderLeft = 'none';
+                    event.style.borderRight = '4px solid';
+                }
+                event.style.width = 'calc(50% - 60px)';
+            });
+        }
+    }
+    
+    // Initial adjustment
+    adjustTimelineForMobile();
+    
+    // Adjust on resize
+    window.addEventListener('resize', adjustTimelineForMobile);
+}
+
+// Panggil fungsi di DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+    // ... kode yang ada ...
+    initializeTimelineResponsive(); // Tambahkan ini
+});
