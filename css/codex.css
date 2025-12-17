@@ -1040,14 +1040,14 @@ footer {
     width: 280px;
     background: var(--bg-secondary);
     flex-direction: column;
-    padding: 5rem 1.5rem 2rem;
+    padding: 6rem 2rem 2rem; /* Sama dengan landing.css */
     transition: right 0.3s ease;
     z-index: 1000 !important;
     box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
     border-left: 1px solid rgba(76, 201, 240, 0.1);
     overflow-y: auto;
-    overflow-x: hidden;
     
+    /* Custom scrollbar untuk Webkit browsers (Chrome, Safari) */
     scrollbar-width: thin;
     scrollbar-color: var(--accent-primary) rgba(76, 201, 240, 0.1);
   }
@@ -1086,60 +1086,33 @@ footer {
     border-radius: 8px;
   }
   
-  /* MOBILE DROPDOWN STYLES - AUTO OPEN */
-  .nav-links.active .mobile-dropdown .dropdown-menu {
-    display: block !important;
-    max-height: 300px;
-    overflow-y: auto;
-    animation: slideDown 0.4s ease forwards;
-    
-    scrollbar-width: thin;
-    scrollbar-color: var(--accent-primary) rgba(76, 201, 240, 0.1);
+  /* Mobile dropdown - SIMPLE VERSION seperti landing.css */
+  .dropdown-menu {
+    position: static;
+    width: 100%;
+    background: rgba(10, 10, 26, 0.3);
+    box-shadow: none;
+    border: 1px solid rgba(76, 201, 240, 0.1);
+    padding: 0;
+    margin: 0.5rem 0 0 0;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease, max-height 0.3s ease;
   }
   
-  .nav-links.active .mobile-dropdown .dropdown-menu::-webkit-scrollbar {
-    width: 4px;
+  .mobile-dropdown.active .dropdown-menu {
+    opacity: 1;
+    max-height: 400px;
   }
   
-  .nav-links.active .mobile-dropdown .dropdown-menu::-webkit-scrollbar-track {
-    background: rgba(76, 201, 240, 0.1);
+  .dropdown-menu a {
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border-left: none;
   }
   
-  .nav-links.active .mobile-dropdown .dropdown-menu::-webkit-scrollbar-thumb {
-    background: var(--accent-primary);
-    border-radius: 2px;
-  }
-  
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      max-height: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      max-height: 300px;
-      transform: translateY(0);
-    }
-  }
-  
-  .nav-links.active .mobile-dropdown .dropdown-toggle {
-    background: rgba(76, 201, 240, 0.15);
-    position: relative;
-  }
-  
-  .nav-links.active .mobile-dropdown .dropdown-toggle::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 3px;
-    background: var(--accent-primary);
-  }
-  
-  .nav-links.active .mobile-dropdown .fa-chevron-down {
-    transform: rotate(180deg);
+  .dropdown-menu a:hover {
+    padding-left: 3rem;
   }
   
   /* Timeline mobile fix */
@@ -1711,80 +1684,69 @@ html {
     border-top: none;
 }
 
+/* ===== DROPDOWN MOBILE STYLES (Same as landing.css) ===== */
 /* Mobile responsiveness for dropdown */
 @media (max-width: 768px) {
-    .dropdown {
-        width: 100%;
-    }
-    
-    .dropdown-toggle {
-        width: 100%;
-        justify-content: flex-start;
-        padding: 0.75rem 1rem;
-    }
-    
-    .dropdown-menu {
-        position: static;
-        width: 100%;
-        min-width: auto;
-        background: rgba(76, 201, 240, 0.05);
-        box-shadow: none;
-        border: 1px solid rgba(76, 201, 240, 0.1);
-        border-radius: 8px;
-        padding: 0.5rem 0;
-        margin: 0.5rem 0 1rem 0;
-        display: none;
-        animation: none;
-        max-height: none;
-    }
-    
-    .dropdown.active .dropdown-menu {
-        display: block;
-    }
-    
-    .dropdown-menu a {
-        padding: 0.65rem 1rem 0.65rem 2rem;
-        justify-content: flex-start;
-        font-size: 0.9rem;
-    }
-    
-    .dropdown-menu .divider {
-        margin: 0.5rem 1rem;
-    }
-    
-    /* Remove brackets on mobile */
-    .dropdown-menu::before,
-    .dropdown-menu::after {
-        display: none;
-    }
-    
-    /* Sticky header untuk dropdown yang panjang */
-    .nav-links {
-        padding-top: 4rem;
-    }
-    
-    /* Logo tetap di atas saat scroll */
-    .logo {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-    }
+  .dropdown {
+      width: 100%;
+  }
+  
+  .dropdown-toggle {
+      width: 100%;
+      justify-content: flex-start;
+      padding: 0.75rem 1rem;
+  }
+  
+  .dropdown-menu {
+      position: static;
+      width: 100%;
+      min-width: auto;
+      background: rgba(76, 201, 240, 0.05);
+      box-shadow: none;
+      border: 1px solid rgba(76, 201, 240, 0.1);
+      border-radius: 8px;
+      padding: 0.5rem 0;
+      margin: 0.5rem 0 1rem 0;
+      display: none;
+      animation: none;
+      max-height: none;
+  }
+  
+  .dropdown.active .dropdown-menu {
+      display: block;
+  }
+  
+  .dropdown-menu a {
+      padding: 0.65rem 1rem 0.65rem 2rem;
+      justify-content: flex-start;
+      font-size: 0.9rem;
+  }
+  
+  .dropdown-menu .divider {
+      margin: 0.5rem 1rem;
+  }
+  
+  /* Remove brackets on mobile */
+  .dropdown-menu::before,
+  .dropdown-menu::after {
+      display: none;
+  }
 }
 
 /* For touch devices, add active state */
 @media (hover: hover) and (pointer: fine) {
-    .dropdown-menu {
-        display: none;
-    }
-    
-    .dropdown:hover .dropdown-menu {
-        display: block;
-    }
+  .dropdown-menu {
+      display: none;
+  }
+  
+  .dropdown:hover .dropdown-menu {
+      display: block;
+  }
 }
 
 /* For touch devices */
 @media (hover: none) and (pointer: coarse) {
-    .dropdown.active .dropdown-menu {
-        display: block;
-    }
+  .dropdown.active .dropdown-menu {
+      display: block;
+  }
 }
